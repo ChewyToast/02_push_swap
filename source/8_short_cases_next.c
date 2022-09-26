@@ -14,7 +14,7 @@
 // WILDCARD FUNCTION FOR THE NEXT_CASE()
 static size_t	extra_next_case(t_stack **stack_a, t_stack **stack_b, size_t min, size_t max)
 {
-	if ((*stack_a)->indx >= min && (*stack_a)->indx <= max - 1)
+	if ((*stack_a)->indx >= min && (*stack_a)->indx <= max)
 	{
 		ft_pab(stack_b, stack_a, 0);
 		return (1);
@@ -32,13 +32,9 @@ void	next_cases(t_stack **stack_a, t_stack **stack_b, size_t chunck_size)
 
 	count = 0;
 	n_chunck = 0;
-	while (!is_shorted(stack_a) && n_chunck <= 3)
+	while ((*stack_a))
 	{
-		printf("\nnum: %d, ind: %zu, chunck_size: %zu\n", (*stack_a)->num, (*stack_a)->indx, chunck_size);
-		//show_stack(stack_a, stack_b);
-		if (stack_len(stack_a) == 2)
-			ft_sab(stack_a, 1);
-		else
+		if (1)
 		{
 			if (n_chunck == 0)
 				count += extra_next_case(stack_a, stack_b, 0, chunck_size);
@@ -53,19 +49,7 @@ void	next_cases(t_stack **stack_a, t_stack **stack_b, size_t chunck_size)
 				count = 0;
 				n_chunck++;
 			}
-			show_stack(stack_a, stack_b);
-			printf("\nn_chunk: %zu, counter: %zu, chunck_size: %zu\n", n_chunck, count, chunck_size);
+			//show_stack(stack_a, stack_b);
 		}
 	}
 }
-
-
-				/* if ((*stack_a)->indx >= 0 && (*stack_a)->indx <= chunck_size)
-				{
-					ft_pab(stack_b, stack_a, 0);
-					//if (!((*stack_b)->indx >= 0 && (*stack_b)->indx <= chunck_size / 2))
-					//	ft_rrab(stack_b, 0);
-					count++;
-				}
-				else
-					ft_rab(stack_a, 1); */

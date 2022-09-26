@@ -14,7 +14,6 @@
 // MAIN FUNCTION OF SHORTING, THERE WE CALL ALL THE SHORTER FUNCTIONS
 int	shorter(t_stack **stack_a, t_stack **stack_b)
 {
-	put_indx(stack_a, stack_len(stack_a));
 	if (!short_case(stack_a, stack_b))
 	{
 		while ((!is_shorted(stack_a) || (*stack_b)))
@@ -31,37 +30,27 @@ int	shorter(t_stack **stack_a, t_stack **stack_b)
 			}
 		}
 	}
-	show_stack(stack_a, stack_b);
+	//show_stack(stack_a, stack_b);
 	return (1);
 }
 
-//printf("\nnum: %d, compare with %d, indx: %d, len: %zu\n",
-//tmp->num, tmp2->num, tmp->indx, stackln);
-//printf("\nnum: %d, indx: %d, len: %zu\n", tmp->num, tmp->indx, stackln);
 //FUNCTION THAT ADDS A INDX FOR EACH ITEM OF THE STACK
 void	put_indx(t_stack **stack, size_t stackln)
 {
-	size_t	size;
 	t_stack	*tmp;
 	t_stack	*tmp2;
+	(void)stackln;
 
 	tmp = *stack;
 	while (tmp)
 	{
+		tmp2 = *stack;
 		tmp->indx = 0;
-		size = stackln - 1;
-		if (tmp->next)
-			tmp2 = tmp->next;
-		else
-			tmp2 = *stack;
-		while (size--)
+		while (tmp2)
 		{
 			if (tmp->num > tmp2->num)
 				tmp->indx++;
-			if (!(tmp2->next))
-				tmp2 = *stack;
-			else
-				tmp2 = tmp2->next;
+			tmp2 = tmp2->next;
 		}
 		tmp = tmp->next;
 	}

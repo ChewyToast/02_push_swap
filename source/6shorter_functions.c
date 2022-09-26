@@ -14,26 +14,19 @@
 // FUNCTION TO FIND THE SMALLEST NUM OF THE STACK
 size_t	find_smallest(t_stack **stack)
 {
-	int		n_to_compare;
-	size_t	indx;
-	size_t	rtrn;
-	t_stack	*tmp;
+	size_t	smallest;
+	t_stack	*stk;
 
-	tmp = *stack;
-	n_to_compare = 2147483647;
-	indx = 0;
-	rtrn = 0;
-	while (tmp)
+	stk = *stack;
+	smallest = 0;
+	while (stk)
 	{
-		if (tmp->num < n_to_compare)
-		{
-			n_to_compare = tmp->num;
-			rtrn = indx;
-		}
-		tmp = tmp->next;
-		indx++;
+		if (stk->indx == 0)
+			break ;
+		smallest++;
+		stk = stk->next;
 	}
-	return (rtrn);
+	return (smallest);
 }
 
 // FUNCTION PASS THE STACK_A TO STACK_B IN DESCENDING ORDER
