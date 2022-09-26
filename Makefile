@@ -27,7 +27,7 @@ SRC =	libft/ft_atoi.c			libft/ft_memmove.c		libft/ft_strlcpy.c	\
 		source/1ft_push_swap.c			source/2ft_check_input.c			\
 		source/3stack_functions.c		source/4stack_operations.c			\
 		source/5ft_shorter.c			source/6shorter_functions.c			\
-		source/7short_cases.c
+		source/7short_cases.c			source/8_short_cases_next.c
 
 FLAGS =		-Werror -Wextra -Wall -o
 

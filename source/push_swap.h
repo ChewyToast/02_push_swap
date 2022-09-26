@@ -19,7 +19,7 @@
 typedef struct s_stack
 {
 	int				num;
-	int				indx;
+	size_t				indx;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -82,6 +82,8 @@ void	tree_case(t_stack **stack_a);
 void	four_case(t_stack **stack_a, t_stack **stack_b);
 //CASE OF ONLY FIVE STACK ELEMENTS
 void	five_case(t_stack **stack_a, t_stack **stack_b);
+// SHORTER FOR MORE THAN 6 NUMBERS
+void	next_cases(t_stack **stack_a, t_stack **stack_b, size_t chunck_size);
 //FUNCTION TO SEE IF IS A SHORT CASE AND SELECT THE CASE
 int		short_case(t_stack **stack_a, t_stack **stack_b);
 

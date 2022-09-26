@@ -87,7 +87,7 @@ void	ft_free(t_stack **stack)
 }
 
 // function to see the stack, just a checker for the programer
-/* void	show_stack(t_stack **stack_a, t_stack **stack_b)
+void	show_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;
 	t_stack	*tmp2;
@@ -114,4 +114,4 @@ void	ft_free(t_stack **stack)
 			printf("\t\t\t-");
 	}
 	printf("\n\n------------------------------");
-} */
+} 

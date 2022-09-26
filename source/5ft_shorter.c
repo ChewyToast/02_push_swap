@@ -31,6 +31,7 @@ int	shorter(t_stack **stack_a, t_stack **stack_b)
 			}
 		}
 	}
+	show_stack(stack_a, stack_b);
 	return (1);
 }
 
