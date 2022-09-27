@@ -118,12 +118,19 @@ int	short_case(t_stack **stack_a, t_stack **stack_b)
 		four_case(stack_a, stack_b);
 	else if (i == 5)
 		five_case(stack_a, stack_b);
-	else if (i >= 6 && i <= 500)
+	else if (i >= 6 && i <= 200)
 	{
 		if (!(i % 4))
 			next_cases(stack_a, stack_b, i / 4);
 		else
 			next_cases(stack_a, stack_b, i / 4 + 1);
+	}
+	else if (i >= 201)
+	{
+		if (!(i % 4))
+			next_cases(stack_a, stack_b, i / 8);
+		else
+			next_cases(stack_a, stack_b, i / 8 + 1);
 	}
 	else
 		return (0);

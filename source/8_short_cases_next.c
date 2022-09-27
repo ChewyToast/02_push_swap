@@ -29,6 +29,27 @@ static size_t	extra_next_case(t_stack **stack_a, t_stack **stack_b, size_t min, 
 // SHORTER FOR MORE THAN 6 NUMBERS
 void	next_cases(t_stack **stack_a, t_stack **stack_b, size_t chunck_size)
 {
+	size_t	count;
+	size_t	iter;
+
+	count = 0;
+	iter = 0;
+	while (*stack_a)
+	{
+		count += extra_next_case(stack_a, stack_b, chunck_size * iter, chunck_size * (iter + 1));
+		if (count == chunck_size)
+		{
+			count = 0;
+			iter++;
+		}
+		//show_stack(stack_a,stack_b);
+	}
+	smart_refill(stack_a, stack_b);
+	//show_stack(stack_a,stack_b);
+}
+// SHORTER FOR MORE THAN 6 NUMBERS
+/* void	next_cases(t_stack **stack_a, t_stack **stack_b, size_t chunck_size)
+{
 	size_t	n_chunck;
 	size_t	count;
 
@@ -53,7 +74,7 @@ void	next_cases(t_stack **stack_a, t_stack **stack_b, size_t chunck_size)
 	smart_refill(stack_a, stack_b);
 	//show_stack(stack_a, stack_b);
 	//printf("\nCHUNK SIZE = %zu, n of numbers: %zu, bigger pos: %zu\n", chunck_size, stack_len(stack_b), find_bigger(stack_b));
-}
+} */
 
 // FUNCTION TO REFILL THE STACK A IN THE CORRECT ORDER
 void	smart_refill(t_stack **stack_a, t_stack **stack_b)
