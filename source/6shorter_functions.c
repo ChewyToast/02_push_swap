@@ -29,6 +29,34 @@ size_t	find_smallest(t_stack **stack)
 	return (smallest);
 }
 
+// FUNCTION TO FIND THE BIGGER NUM OF THE STACK
+size_t	find_bigger(t_stack **stack)
+{
+	char	contr;
+	size_t	bigger;
+	t_stack	*tmp;
+	t_stack	*tmp2;
+
+	bigger = 0;
+	tmp = *stack;
+	while (tmp)
+	{
+		contr = 0;
+		tmp2 = *stack;
+		while (tmp2)
+		{
+			if (tmp->indx < tmp2->indx)
+				contr = 1;
+			tmp2 = tmp2->next;
+		}
+		if (!contr)
+			break ;
+		bigger++;
+		tmp = tmp->next;
+	}
+	return(bigger);
+}
+
 // FUNCTION PASS THE STACK_A TO STACK_B IN DESCENDING ORDER
 int	filling_stack_b(t_stack **stack_a, t_stack **stack_b)
 {

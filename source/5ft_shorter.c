@@ -30,16 +30,14 @@ int	shorter(t_stack **stack_a, t_stack **stack_b)
 			}
 		}
 	}
-	//show_stack(stack_a, stack_b);
 	return (1);
 }
 
 //FUNCTION THAT ADDS A INDX FOR EACH ITEM OF THE STACK
-void	put_indx(t_stack **stack, size_t stackln)
+void	put_indx(t_stack **stack)
 {
 	t_stack	*tmp;
 	t_stack	*tmp2;
-	(void)stackln;
 
 	tmp = *stack;
 	while (tmp)

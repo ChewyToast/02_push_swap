@@ -100,14 +100,14 @@ void	show_stack(t_stack **stack_a, t_stack **stack_b)
 	{
 		if (tmp)
 		{
-			printf("\n %d", tmp->num);
+			printf("\n %d - %zu", tmp->num, tmp->indx);
 			tmp = tmp->next;
 		}
 		else
 			printf("\n -");
 		if (tmp2)
 		{
-			printf("\t\t\t%d", tmp2->num);
+			printf("\t\t\t%d - %zu", tmp2->num, tmp2->indx);
 			tmp2 = tmp2->next;
 		}
 		else

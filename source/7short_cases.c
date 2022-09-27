@@ -68,7 +68,7 @@ void	four_case(t_stack **stack_a, t_stack **stack_b)
 	if (!is_shorted(stack_a))
 	{
 		ft_pab(stack_b, stack_a, 2);
-		put_indx(stack_a, stack_len(stack_a));
+		put_indx(stack_a);
 		tree_case(stack_a);
 		ft_pab(stack_a, stack_b, 1);
 	}
@@ -97,7 +97,7 @@ void	five_case(t_stack **stack_a, t_stack **stack_b)
 	if (!is_shorted(stack_a))
 	{
 		ft_pab(stack_b, stack_a, 2);
-		put_indx(stack_a, stack_len(stack_a));
+		put_indx(stack_a);
 		four_case(stack_a, stack_b);
 		ft_pab(stack_a, stack_b, 1);
 	}
@@ -109,7 +109,7 @@ int	short_case(t_stack **stack_a, t_stack **stack_b)
 	size_t	i;
 
 	i = stack_len(stack_a);
-	put_indx(stack_a, stack_len(stack_a));
+	put_indx(stack_a);
 	if (i == 2)
 		two_case(stack_a);
 	else if (i == 3)
@@ -118,8 +118,13 @@ int	short_case(t_stack **stack_a, t_stack **stack_b)
 		four_case(stack_a, stack_b);
 	else if (i == 5)
 		five_case(stack_a, stack_b);
-	else if (i >= 6 && i < 100)
-		next_cases(stack_a, stack_b, ((i + 1) / 4));
+	else if (i >= 6 && i <= 500)
+	{
+		if (!(i % 4))
+			next_cases(stack_a, stack_b, i / 4);
+		else
+			next_cases(stack_a, stack_b, i / 4 + 1);
+	}
 	else
 		return (0);
 	return (1);

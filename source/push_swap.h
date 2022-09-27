@@ -63,11 +63,13 @@ int		shorter(t_stack **stack_a, t_stack **stack_b);
 // function to check if the stack is already shorted
 int		is_shorted(t_stack **stack);
 //FUNCTION THAT ADDS A INDX FOR EACH ITEM OF THE STACK
-void	put_indx(t_stack **stack, size_t stackln);
+void	put_indx(t_stack **stack);
 
 /*SHORTER_FUNCTIONS*/
 // function to find the smallest num of the stack
 size_t	find_smallest(t_stack **stack);
+// FUNCTION TO FIND THE BIGGER NUM OF THE STACK
+size_t	find_bigger(t_stack **stack);
 // function pass the stack_a to stack_b in descending order
 int		filling_stack_b(t_stack **stack_a, t_stack **stack_b);
 // function to pass to the stack_a, all the items in the correct order
@@ -86,5 +88,7 @@ void	five_case(t_stack **stack_a, t_stack **stack_b);
 void	next_cases(t_stack **stack_a, t_stack **stack_b, size_t chunck_size);
 //FUNCTION TO SEE IF IS A SHORT CASE AND SELECT THE CASE
 int		short_case(t_stack **stack_a, t_stack **stack_b);
+// FUNCTION TO REFILL THE STACK A IN THE CORRECT ORDER
+void	smart_refill(t_stack **stack_a, t_stack **stack_b);
 
 #endif
