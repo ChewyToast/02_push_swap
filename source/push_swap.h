@@ -75,7 +75,7 @@ int		filling_stack_b(t_stack **stack_a, t_stack **stack_b);
 // function to pass to the stack_a, all the items in the correct order
 int		refill_a(t_stack **stack_a, t_stack **stack_b);
 
-/*SHORT CASES*/
+/*SHORT_CASES*/
 //CASE OF ONLY TWO STACK ELEMENTS
 void	two_case(t_stack **stack_a);
 //CASE OF ONLY TREE STACK ELEMENTS
@@ -84,6 +84,8 @@ void	tree_case(t_stack **stack_a);
 void	four_case(t_stack **stack_a, t_stack **stack_b);
 //CASE OF ONLY FIVE STACK ELEMENTS
 void	five_case(t_stack **stack_a, t_stack **stack_b);
+
+/*SHORT_CASES NEXT*/
 // SHORTER FOR MORE THAN 6 NUMBERS
 void	next_cases(t_stack **stack_a, t_stack **stack_b, size_t chunck_size);
 //FUNCTION TO SEE IF IS A SHORT CASE AND SELECT THE CASE

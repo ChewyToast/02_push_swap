@@ -128,9 +128,9 @@ int	short_case(t_stack **stack_a, t_stack **stack_b)
 	else if (i >= 201)
 	{
 		if (!(i % 4))
-			next_cases(stack_a, stack_b, i / 8);
+			next_cases(stack_a, stack_b, i / 9);
 		else
-			next_cases(stack_a, stack_b, i / 8 + 1);
+			next_cases(stack_a, stack_b, i / 9 + 1);
 	}
 	else
 		return (0);

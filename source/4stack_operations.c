@@ -65,9 +65,12 @@ void	ft_rab(t_stack **stack, char mode)
 		add_at_end(stack, tmp);
 		tmp->next = NULL;
 	}
-	if (mode == 1)
+
+	if (mode == 50)
+		write(1, "rr\n", 3);
+	else if (mode == 1)
 		write(1, "ra\n", 3);
-	else
+	else if (mode == 0)
 		write(1, "rb\n", 3);
 }
 

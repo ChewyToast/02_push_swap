@@ -29,7 +29,7 @@ SRC =	libft/ft_atoi.c			libft/ft_memmove.c		libft/ft_strlcpy.c	\
 		source/5ft_shorter.c			source/6shorter_functions.c			\
 		source/7short_cases.c			source/8_short_cases_next.c
 
-FLAGS =		-Werror -Wextra -Wall -o
+FLAGS =		-g -Werror -Wextra -Wall -o
 
 CC = 		gcc
 
