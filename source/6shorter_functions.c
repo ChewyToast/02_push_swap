@@ -57,6 +57,32 @@ size_t	find_bigger(t_stack **stack)
 	return(bigger);
 }
 
+// FUNCTION TO FIND THE SECOND BIGGER NUMBER OF A STACK
+int	find_second_bigger(t_stack **stack, size_t bigger_pos)
+{
+	int	rtrn;
+	t_stack	*bigger_stack;
+	t_stack *tmp;
+
+	tmp = *stack;
+	rtrn = -2147483648;
+	bigger_stack = *stack;
+	while (bigger_pos)
+	{
+		bigger_stack = bigger_stack->next;
+		bigger_pos--;
+	}
+	//printf("\nbigger_stack->num: %d\n", bigger_stack->num);
+	while (tmp)
+	{
+		if (tmp->num > rtrn && tmp->num < bigger_stack->num)
+			rtrn = tmp->num;
+		tmp = tmp->next;
+	}
+	//printf("\nrtrn: %d\n", rtrn);
+	return (rtrn);
+}
+
 // FUNCTION PASS THE STACK_A TO STACK_B IN DESCENDING ORDER
 int	filling_stack_b(t_stack **stack_a, t_stack **stack_b)
 {

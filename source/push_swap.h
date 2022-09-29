@@ -70,6 +70,8 @@ void	put_indx(t_stack **stack);
 size_t	find_smallest(t_stack **stack);
 // FUNCTION TO FIND THE BIGGER NUM OF THE STACK
 size_t	find_bigger(t_stack **stack);
+// FUNCTION TO FIND THE SECOND BIGGER NUMBER OF A STACK
+int	find_second_bigger(t_stack **stack, size_t bigger_pos);
 // function pass the stack_a to stack_b in descending order
 int		filling_stack_b(t_stack **stack_a, t_stack **stack_b);
 // function to pass to the stack_a, all the items in the correct order
