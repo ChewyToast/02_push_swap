@@ -26,6 +26,7 @@ static size_t	extra_next_case(t_stack **stack_a, t_stack **stack_b, size_t min, 
 		{
 			if (i)
 			{
+				//printf("\n1 - OPTI\n");
 				ft_rab(stack_a, 50);
 				ft_rab(stack_b, 2);
 			}
@@ -65,6 +66,7 @@ void	next_cases(t_stack **stack_a, t_stack **stack_b, size_t chunck_size)
 void	smart_refill(t_stack **stack_a, t_stack **stack_b)
 {
 	size_t	finder;
+	
 	while (*stack_b)
 	{
 		finder = find_bigger(stack_b);
@@ -76,6 +78,9 @@ void	smart_refill(t_stack **stack_a, t_stack **stack_b)
 				ft_rrab(stack_b, 0);
 		}
 		else
+		{
 			ft_pab(stack_a, stack_b, 1);
+		}
+		//show_stack(stack_a,stack_b);
 	}
 }
