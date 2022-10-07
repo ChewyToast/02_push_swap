@@ -10,41 +10,68 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+# -------------------------- DECLARATION --------------------------
 
-SRC =	libft/ft_atoi.c			libft/ft_memmove.c		libft/ft_strlcpy.c	\
-		libft/ft_bzero.c		libft/ft_memset.c		libft/ft_strlen.c	\
-		libft/ft_calloc.c		libft/ft_putchar_fd.c	libft/ft_strmapi.c	\
-		libft/ft_isalnum.c		libft/ft_putendl_fd.c	libft/ft_strncmp.c	\
-		libft/ft_isalpha.c		libft/ft_putnbr_fd.c	libft/ft_strnstr.c	\
-		libft/ft_isascii.c		libft/ft_putstr_fd.c	libft/ft_strrchr.c	\
-		libft/ft_isdigit.c		libft/ft_split.c		libft/ft_strrspn.c	\
-		libft/ft_isprint.c		libft/ft_strchr.c		libft/ft_strspn.c	\
-		libft/ft_itoa.c			libft/ft_strdup.c		libft/ft_strtrim.c	\
-		libft/ft_memchr.c		libft/ft_striteri.c		libft/ft_substr.c	\
-		libft/ft_memcmp.c		libft/ft_strjoin.c		libft/ft_tolower.c	\
-		libft/ft_memcpy.c		libft/ft_strlcat.c		libft/ft_toupper.c	\
-		source/1ft_push_swap.c			source/2ft_check_input.c			\
-		source/3stack_functions.c		source/4stack_operations.c			\
-		source/5ft_shorter.c			source/6shorter_functions.c			\
-		source/7short_cases.c			source/8_short_cases_next.c
+NAME =		push_swap
 
-FLAGS =		-g -Werror -Wextra -Wall -o
+INCL = 		source/push_swap.h
+
+BMLIB = 	bmlib/bmlib.a
+
+SRC =		$(shell ls source/*.c)
+
+OBJ =		$(SRC:.c=.o)
+
+FLAGS =		-Werror -Wextra -Wall
 
 CC = 		gcc
 
-all:
-			$(CC) $(FLAGS) $(NAME) $(SRC)
+# Colors
+DEF_COLOR =		\033[0;39m
+GRAY =			\033[0;90m
+RED =			\033[0;91m
+GREEN =			\033[0;92m
+YELLOW =		\033[0;93m
+BLUE =			\033[0;94m
+MAGENTA =		\033[0;95m
+CYAN =			\033[0;96m
+WHITE =			\033[0;97m
 
-push_swap:
-			$(CC) $(FLAGS) $(NAME) $(SRC)
+# -------------------------- ACTIONS --------------------------
+
+all:
+		@echo "$(YELLOW) UPDATING GIT SUBMODULES... ⌛$(GREEN)"
+		@git submodule update --init
+		@git submodule update --remote --merge --recursive
+		@echo "\n"
+		@$(MAKE) $(NAME)
+
+$(NAME): $(BMLIB) $(OBJ)
+		@echo "$(YELLOW)\n\nLinking...$(GRAY)"
+		@ar -rcs $(NAME) $(BMLIB)$(OBJ)
+		@echo "$(GREEN)\n PUSH SWAP COMPILED! 🏁$(DEF_COLOR)\n"
+		@echo "$(YELLOW)\t\t\t\t\t\t   ---------------------------\n"
+
+$(BMLIB):
+			$(MAKE) -C ../bmlib/
+
+%.o: %.c 
+	@echo "$(WHITE)\ncompiling $<"
+	@echo "$(GRAY)"
+	$(CC) $(FLAGS) -c $< -o $@
+	@echo "$(GRAY)--------------------------------------------------------------"
 
 clean:
-			@rm -f	*.o
+		@echo "$(RED)\n CLEANING ALL THE OBJECTS...🧹\n"
+		@rm -f $(ALL_OBJ)
 
-fclean:		clean
-			@rm -f	$(NAME)
+fclean:
+		$(MAKE) clean
+		@echo "\t$(GRAY)     AND"
+		@echo "$(RED)\n     REMOVING PUSH_SWAP\n$(GRAY)"
+		@rm -f	$(NAME)
 
-re:			fclean all
+re:		fclean all
 
-.PHONY: all clean fclean re
+
+.PHONY:		all clean fclean re
