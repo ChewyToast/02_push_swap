@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 			return (ft_error());
 	}
 	else
-		return (ft_error());
+		return (0);
 	return (0);
 }
 

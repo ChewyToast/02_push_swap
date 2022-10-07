@@ -45,6 +45,13 @@ WHITE =			\033[0;97m
 
 # -------------------------- ACTIONS --------------------------
 
+all:
+		@echo "$(YELLOW) UPDATING GIT SUBMODULES... ⌛$(GREEN)"
+		@git submodule update --init
+		@git submodule update --remote --merge --recursive
+		@echo "\n"
+		@$(MAKE) $(PUSW)
+
 $(PUSW):: $(BMLIB) $(OBJ)
 		@echo "$(YELLOW)\n\nLinking...$(GRAY)"
 		@$(CC) $(FLAGS) $(BMLIB) $(OBJ) -o $(PUSW)
@@ -66,14 +73,6 @@ $(BMLIB):
 		@echo "$(WHITE)ncompiling $< $(GRAY)"
 		$(CC) $(FLAGS) -c $< -o $@
 		@echo "$(GRAY)--------------------------------------------------------------"
-
-all:
-		@echo "$(YELLOW) UPDATING GIT SUBMODULES... ⌛$(GREEN)"
-		@git submodule update --init
-		@git submodule update --remote --merge --recursive
-		@echo "\n"
-		@$(MAKE) $(PUSW)
-		@$(MAKE) $(CHKR)
 
 ps:
 		@$(MAKE) $(PUSW)
