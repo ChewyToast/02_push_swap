@@ -1,0 +1,3 @@
+[submodule "bmlib"]
+	path = bmlib
+	url = git@github.com:ChewyToast/bmlib.git

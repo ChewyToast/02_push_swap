@@ -51,13 +51,12 @@ size_t	ft_error_free(t_stack **stack_a, t_stack **stack_b)
 {
 	ft_free(stack_a);
 	ft_free(stack_b);
-	write(2, "Error\n", 6);
-	return (-1);
+	return (0);
 }
 
 // FUNTION TO SHOW THE ERROR MSG AND RETURN -1
 size_t	ft_error(void)
 {
 	write(2, "Error\n", 6);
-	return (-1);
+	return (0);
 }

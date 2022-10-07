@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
+/*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoll-pe <bmoll-pe@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/25 22:55:27 by bmoll-pe          #+#    #+#             */
-/*   Updated: 2022/05/26 01:52:19 by bmoll-pe         ###   ########.fr       */
+/*   Created: 2022/06/21 11:19:28 by bmoll-pe          #+#    #+#             */
+/*   Updated: 2022/06/24 12:30:21 by bmoll-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../source/push_swap.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+// FUNTION TO SHOW THE ERROR MSG AND RETURN -1
+size_t	ft_error_free(t_stack **stack_a, t_stack **stack_b)
 {
-	del(lst->content);
-	free(lst);
+	ft_free(stack_a);
+	ft_free(stack_b);
+	return (0);
+}
+
+// FUNTION TO SHOW THE ERROR MSG AND RETURN -1
+size_t	ft_error(void)
+{
+	write(2, "Error\n", 6);
+	return (0);
 }

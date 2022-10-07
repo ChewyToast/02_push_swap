@@ -114,4 +114,4 @@ void	show_stack(t_stack **stack_a, t_stack **stack_b)
 			printf("\t\t\t-");
 	}
 	printf("\n\n------------------------------");
-} 
+}
