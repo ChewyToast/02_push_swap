@@ -104,21 +104,9 @@ void	five_case(t_stack **stack_a, t_stack **stack_b)
 }
 
 //FUNCTION TO SEE IF IS A SHORT CASE AND SELECT THE CASE
-int	short_case(t_stack **stack_a, t_stack **stack_b)
+int	short_case(t_stack **stack_a, t_stack **stack_b, size_t i)
 {
-	size_t	i;
-
-	i = stack_len(stack_a);
-	put_indx(stack_a);
-	if (i == 2)
-		two_case(stack_a);
-	else if (i == 3)
-		tree_case(stack_a);
-	else if (i == 4)
-		four_case(stack_a, stack_b);
-	else if (i == 5)
-		five_case(stack_a, stack_b);
-	else if (i >= 6 && i <= 200 && !is_shorted(stack_a))
+	if (i >= 6 && i <= 200 && !is_shorted(stack_a))
 	{
 		if (!(i % 4))
 			next_cases(stack_a, stack_b, i / 4);
@@ -132,7 +120,5 @@ int	short_case(t_stack **stack_a, t_stack **stack_b)
 		else
 			next_cases(stack_a, stack_b, i / 9 + 1);
 	}
-	else
-		return (0);
 	return (1);
 }

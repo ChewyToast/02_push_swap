@@ -14,22 +14,20 @@
 // MAIN FUNCTION OF SHORTING, THERE WE CALL ALL THE SHORTER FUNCTIONS
 int	shorter(t_stack **stack_a, t_stack **stack_b)
 {
-	if (!short_case(stack_a, stack_b))
-	{
-		while ((!is_shorted(stack_a) || (*stack_b)))
-		{
-			if (stack_len(stack_a) > 1 && !is_shorted(stack_a))
-			{
-				if (!filling_stack_b(stack_a, stack_b))
-					return (0);
-			}
-			else
-			{
-				if (!refill_a(stack_a, stack_b))
-					return (0);
-			}
-		}
-	}
+	size_t	i;
+
+	i = stack_len(stack_a);
+	put_indx(stack_a);
+	if (i == 2)
+		two_case(stack_a);
+	else if (i == 3)
+		tree_case(stack_a);
+	else if (i == 4)
+		four_case(stack_a, stack_b);
+	else if (i == 5)
+		five_case(stack_a, stack_b);
+	else
+		return (short_case(stack_a, stack_b, i));
 	return (1);
 }
 

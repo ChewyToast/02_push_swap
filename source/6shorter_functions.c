@@ -54,15 +54,15 @@ size_t	find_bigger(t_stack **stack)
 		bigger++;
 		tmp = tmp->next;
 	}
-	return(bigger);
+	return (bigger);
 }
 
 // FUNCTION TO FIND THE SECOND BIGGER NUMBER OF A STACK
 int	find_second_bigger(t_stack **stack, size_t bigger_pos)
 {
-	int	rtrn;
+	int		rtrn;
 	t_stack	*bigger_stack;
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	tmp = *stack;
 	rtrn = -2147483648;
@@ -72,36 +72,28 @@ int	find_second_bigger(t_stack **stack, size_t bigger_pos)
 		bigger_stack = bigger_stack->next;
 		bigger_pos--;
 	}
-	//printf("\nbigger_stack->num: %d\n", bigger_stack->num);
 	while (tmp)
 	{
 		if (tmp->num > rtrn && tmp->num < bigger_stack->num)
 			rtrn = tmp->num;
 		tmp = tmp->next;
 	}
-	//printf("\nrtrn: %d\n", rtrn);
 	return (rtrn);
 }
 
-// FUNCTION PASS THE STACK_A TO STACK_B IN DESCENDING ORDER
-int	filling_stack_b(t_stack **stack_a, t_stack **stack_b)
+// FUNCTION TO FIND THE THIRD BIGGER NUMBER OF A STACK
+int	find_third_bigger(t_stack **stack, int scnd_bigg)
 {
-	size_t	indx;
+	int		numb;
+	t_stack	*tmp;
 
-	indx = find_smallest(stack_a);
-	if (!indx)
-		ft_pab(stack_b, stack_a, 2);
-	else if (indx <= (stack_len(stack_a) / 2))
-		ft_rab(stack_a, 1);
-	else
-		ft_rrab(stack_a, 1);
-	return (1);
-}
-
-// FUNCTION TO PASS TO THE STACK_A, ALL THE ITEMS IN THE CORRECT ORDER
-int	refill_a(t_stack **stack_a, t_stack **stack_b)
-{
-	while (*stack_b)
-		ft_pab(stack_a, stack_b, 1);
-	return (1);
+	numb = -2147483648;
+	tmp = *stack;
+	while (tmp)
+	{
+		if (tmp->num < scnd_bigg && tmp->num > numb)
+			numb = tmp->num;
+		tmp = tmp->next;
+	}
+	return (numb);
 }

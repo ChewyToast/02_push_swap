@@ -13,6 +13,7 @@
 
 static ssize_t	ck_startup(char **argv);
 static size_t	compare_inp(char *str, t_stack **stack_a, t_stack **stack_b);
+static size_t	extra_comp_inp(char *str, t_stack **stack_a, t_stack **stack_b);
 
 int	main(int argc, char **argv)
 {
@@ -68,9 +69,10 @@ size_t	checker(t_stack **stack_a, t_stack **stack_b)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	return(1);
+	return (1);
 }
 
+// FUNCTION TO CHECK THE INPUT VALUE
 static size_t	compare_inp(char *str, t_stack **stack_a, t_stack **stack_b)
 {
 	if (!ft_strncmp(str, "sa\n", 0xFFFFFFF))
@@ -91,7 +93,15 @@ static size_t	compare_inp(char *str, t_stack **stack_a, t_stack **stack_b)
 		return (ck_rab(stack_a));
 	else if (!ft_strncmp(str, "rb\n", 0xFFFFFFF))
 		return (ck_rab(stack_b));
-	else if (!ft_strncmp(str, "rr\n", 0xFFFFFFFF))
+	else
+		return (extra_comp_inp(str, stack_a, stack_b));
+	return (0);
+}
+
+// EXTRA FUNCTION FOR THE INPUT CHECKER
+static size_t	extra_comp_inp(char *str, t_stack **stack_a, t_stack **stack_b)
+{
+	if (!ft_strncmp(str, "rr\n", 0xFFFFFFFF))
 	{
 		if (!ck_rab(stack_a))
 			return (0);

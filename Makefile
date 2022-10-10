@@ -86,6 +86,7 @@ all:
 update:
 				@echo "$(YELLOW)Updating submodules"
 				@$(GSU) $(GSU_FLAGS)
+				@echo "$(YELLOW)DONE"
 
 bonus:
 				@$(MAKE) $(BNS)
@@ -104,12 +105,12 @@ fclean:
 				@$(MAKE) clean
 ifeq "$(shell ls | grep push_swap)" "$(NAME)"
 				@echo "$(DARK_YELLOW)Remove push_swap 🧼"
-				@rm -f	$(NAME)
 endif
 ifeq "$(shell ls | grep checker)" "$(BNS) checker_source"
 				@echo "$(DARK_YELLOW)Remove checker 🧼"
-				@rm -f	$(BNS)
 endif
+				@rm -f	$(NAME)
+				@rm -f	$(BNS)
 
 # Clean all the .o files and the push_swap or/and the checker, and then restarts to the main action
 re:

@@ -23,7 +23,16 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-//	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- PUSH_SWAP -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+typedef struct s_refill
+{
+	size_t	finder;
+	int		scnd;
+	int		thrd;
+	char	opti;
+	char	optimax;
+}	t_refill;
+
+//	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- PUSH_SWAP -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 /* **** FT_CHECK_INPUT **** */
 // function chain to check the input
 size_t	check_input(char **input);
@@ -73,10 +82,8 @@ size_t	find_smallest(t_stack **stack);
 size_t	find_bigger(t_stack **stack);
 // FUNCTION TO FIND THE SECOND BIGGER NUMBER OF A STACK
 int		find_second_bigger(t_stack **stack, size_t bigger_pos);
-// function pass the stack_a to stack_b in descending order
-int		filling_stack_b(t_stack **stack_a, t_stack **stack_b);
-// function to pass to the stack_a, all the items in the correct order
-int		refill_a(t_stack **stack_a, t_stack **stack_b);
+// FUNCTION TO FIND THE THIRD BIGGER NUMBER OF A STACK
+int		find_third_bigger(t_stack **stack, int scnd_bigg);
 
 /* **** SHORT_CASES **** */
 //CASE OF ONLY TWO STACK ELEMENTS
@@ -92,11 +99,11 @@ void	five_case(t_stack **stack_a, t_stack **stack_b);
 // SHORTER FOR MORE THAN 6 NUMBERS
 void	next_cases(t_stack **stack_a, t_stack **stack_b, size_t chunck_size);
 //FUNCTION TO SEE IF IS A SHORT CASE AND SELECT THE CASE
-int		short_case(t_stack **stack_a, t_stack **stack_b);
+int		short_case(t_stack **stack_a, t_stack **stack_b, size_t i);
 // FUNCTION TO REFILL THE STACK A IN THE CORRECT ORDER
 void	smart_refill(t_stack **stack_a, t_stack **stack_b);
 
-//	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- CHECKER -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+//	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- CHECKER -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 
 /* **** CHECKER **** */
 // READ AND EXECUTE FUNCTIONS
