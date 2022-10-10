@@ -80,6 +80,7 @@ DARK_YELLOW =	\033[38;5;143m
 
 # Main action of the makefile
 all:
+				@$(MAKE) bmlib
 				@$(MAKE) $(NAME)
 
 # Action to update the git submodules
@@ -120,7 +121,7 @@ re:
 rebmlib:
 				@$(MAKE) re -C bmlib/
 
-%.o: %.c
+%.o: %.c		$(INCL) $(BMLIB_INC) $(BMLIB)
 				@echo "$(CYAN)compiling: [$(DARK_GRAY)$<$(CYAN)]"
 				@$(CC) $(FLAGS) -c $< -o $@
 
