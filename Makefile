@@ -10,29 +10,54 @@
 #                                                                              #
 # **************************************************************************** #
 
-# -------------------------- DECLARATION --------------------------
+# ----------------------------- VAR DECLARATION ------------------------------ #
 
-PUSW =		push_swap
+# Name value
+NAME =			push_swap
 
-CHKR =		checker
+# BONUS value
+BNS =			checker
 
-INCL = 		source/push_swap.h
+# Header for source
+INCL = 			source/push_swap.h
 
-BMLIB = 	bmlib/bmlib.a
+# Bmlib libraries
+BMLIB = 		bmlib/bmlib.a
 
-SRC =		$(shell ls source/*.c)
+# Bmlib header
+BMLIB_INC =		bmlib/bmlib.h
 
-CHK_SRC =	$(shell ls checker_source/*.c) $(shell ls source/*.c | grep -v 1ft_push_swap.c)
+# All source for the mandatory
+SRC =			source/1ft_push_swap.c		source/3stack_functions.c	source/5ft_shorter.c		\
+				source/7short_cases.c		source/2ft_check_input.c	source/4stack_operations.c	\
+				source/6shorter_functions.c	source/8_short_cases_next.c
 
-OBJ =		$(SRC:.c=.o)
+# All source for the bonus
+BNS_SRC =		checker_source/checker.c	checker_source/checker_operations.c	\
+				checker_source/utils.c		source/2ft_check_input.c			\
+				source/3stack_functions.c	source/4stack_operations.c			\
+				source/5ft_shorter.c		source/6shorter_functions.c			\
+				source/7short_cases.c		source/8_short_cases_next.c
 
-CHK_OBJ =	$(CHK_SRC:.c=.o) 
+# All the mandatory objects
+OBJ =			$(SRC:%.c=%.o)
 
-FLAGS =		-Werror -Wextra -Wall
+# All the bonus objects
+BNS_OBJ =		$(BNS_SRC:%.c=%.o)
 
-CC = 		gcc
+# Git submodule update
+GSU =			git submodule update
 
-# Colors
+# Flags for GSU
+GSU_FLAGS =		--remote --merge --recursive
+
+# Flags to compile with gcc
+FLAGS =			-Werror -Wextra -Wall
+
+# Variable to compile .c files
+CC = 			gcc
+
+# Colors 
 DEF_COLOR =		\033[0;39m
 GRAY =			\033[0;90m
 RED =			\033[0;91m
@@ -42,92 +67,77 @@ BLUE =			\033[0;94m
 MAGENTA =		\033[0;95m
 CYAN =			\033[0;96m
 WHITE =			\033[0;97m
+BLACK =			\033[0;99m
+ORANGE =		\033[38;5;209m
+BROWN =			\033[38;5;94m
+DARK_GRAY =		\033[38;5;234m
+MID_GRAY =		\033[38;5;245m
+RANDM =			\033[38;5;95m
+DARK_GREEN =	\033[38;5;64m
+DARK_YELLOW =	\033[38;5;143m
 
-# -------------------------- ACTIONS --------------------------
+# --------------------------------- ACTIONS ---------------------------------- #
 
+# Main action of the makefile
 all:
-		@echo "$(YELLOW) UPDATING GIT SUBMODULES... ⌛$(GREEN)"
-		@git submodule update --init
-		@git submodule update --remote --merge --recursive
-		@echo "\n"
-		@$(MAKE) $(PUSW)
+				@$(MAKE) $(NAME)
 
-$(PUSW):: $(BMLIB) $(OBJ)
-		@echo "$(YELLOW)\n\nLinking...$(GRAY)"
-		@$(CC) $(FLAGS) $(BMLIB) $(OBJ) -o $(PUSW)
-		@echo "$(GREEN)\n🏁 PUSH SWAP COMPILED! 🏁$(DEF_COLOR)"
-
-$(PUSW)::
-		@echo "$(GREEN)DONE"
-
-$(CHKR): $(BMLIB) $(CHK_OBJ)
-		@echo "$(YELLOW)\n\nLinking...$(GRAY)"
-		@$(CC) $(FLAGS) $(BMLIB) $(CHK_OBJ) -o $(CHKR)
-		@echo "$(MAGENTA)\n🏁 CHECKER COMPILED! 🏁$(DEF_COLOR)"
-
-$(BMLIB):
-		@$(MAKE) all -C bmlib/
-		@$(MAKE) clean -C bmlib/
-
-%.o: %.c 
-		@echo "$(WHITE)ncompiling $< $(GRAY)"
-		$(CC) $(FLAGS) -c $< -o $@
-		@echo "$(GRAY)--------------------------------------------------------------"
-
-ps:
-		@$(MAKE) $(PUSW)
+# Action to update the git submodules
+update:
+				@echo "$(YELLOW)Updating submodules"
+				@$(GSU) $(GSU_FLAGS)
 
 bonus:
-		@$(MAKE) $(CHKR)
+				@$(MAKE) $(BNS)
 
-bmclean:
-		@$(MAKE) clean -C bmlib/
+bmlib:
+				@$(MAKE) -C bmlib/
 
-bmfclean:
-		@$(MAKE) fclean -C bmlib/
-
+# Clean all the .o files
 clean:
-		@echo "$(MAGENTA)CLEANING ALL THE OBJECTS...🧹"
-		@rm -f $(OBJ)
+				@echo "$(DARK_YELLOW)Remove objects 🧹"
+				@rm -f $(OBJ)
+				@rm -f $(BNS_OBJ)
 
+# Clean all the .o files and the push_swap or/and the checker
 fclean:
-		@$(MAKE) clean
-		@echo "$(GRAY)&&"
-		@echo "$(RED)REMOVING PUSH_SWAP❌$(GRAY)"
-		@rm -f	$(PUSW)
+				@$(MAKE) clean
+ifeq "$(shell ls | grep push_swap)" "$(NAME)"
+				@echo "$(DARK_YELLOW)Remove push_swap 🧼"
+				@rm -f	$(NAME)
+endif
+ifeq "$(shell ls | grep checker)" "$(BNS) checker_source"
+				@echo "$(DARK_YELLOW)Remove checker 🧼"
+				@rm -f	$(BNS)
+endif
 
-cleanbns:
-		@echo "$(MAGENTA)CLEANING ALL THE CHECKER OBJECTS...🧹"
-		@rm -f $(CHK_OBJ)
-		@rm -f $(OBJ)
+# Clean all the .o files and the push_swap or/and the checker, and then restarts to the main action
+re:
+				@$(MAKE) fclean
+				@$(MAKE) all
 
-fcleanbns:
-		@$(MAKE) cleanbns
-		@echo "$(GRAY)&&"
-		@echo "$(RED)REMOVING CHECKER❌$(GRAY)"
-		@rm -f	$(CHKR)
+rebmlib:
+				@$(MAKE) re -C bmlib/
 
-cleanall:
-		@$(MAKE) bmclean
-		@$(MAKE) clean
+%.o: %.c
+				@echo "$(CYAN)compiling: [$(DARK_GRAY)$<$(CYAN)]"
+				@$(CC) $(FLAGS) -c $< -o $@
 
-fcleanall:
-		@$(MAKE) bmfclean
-		@$(MAKE) fcleanbns
-		@$(MAKE) fclean
+$(NAME)::		$(BMLIB) $(OBJ)
+				@echo "$(YELLOW)Linking...$(BROWN)"
+				@$(CC) $(FLAGS) $(BMLIB) $(OBJ) -o $(NAME)
 
-re:		fclean all
+$(NAME)::
+				@echo "$(DARK_GREEN)PUSH_SWAP COMPILED! ✅$(DEF_COLOR)"
 
-reps:
-		@$(MAKE) fclean
-		@$(MAKE) ps
+$(BNS)::		$(BMLIB) $(BNS_OBJ)
+				@echo "$(YELLOW)Linking...$(BROWN)"
+				@$(CC) $(FLAGS) $(BMLIB) $(BNS_OBJ) -o $(BNS)
 
-rebns:
-		@$(MAKE) fcleanbns
-		@$(MAKE) bonus
-reall:
-		@$(MAKE) re -C bmlib/
-		@$(MAKE) re
+$(BNS)::
+				@echo "$(DARK_GREEN)CHECKER COMPILED! ✅$(DEF_COLOR)"
 
+$(BMLIB):
+				@$(MAKE) -C bmlib/
 
-.PHONY:		all clean fclean re ps bmclean bmfclean cleanall fcleanall
+.PHONY:		all update bonus bmlib clean fclean re rebmlib
